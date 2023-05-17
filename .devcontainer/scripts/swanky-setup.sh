@@ -1,15 +1,5 @@
 #!/bin/bash
 
-git_user=$(grep -oP "(?<=user:).*" /host-home/git_creds) || git_user=""
-git_email=$(grep -oP "(?<=email:).*" /host-home/git_creds) || git_email=""
-
-git config --global "user.name" $git_user
-git config --global "user.email" $git_email
-
-# Fix memory leakage from aarm64 mac
-echo "[net]" > $CARGO_HOME/config.toml
-echo "git-fetch-with-cli = true" >> $CARGO_HOME/config.toml
-
 rustup default stable
 rustup update
 rustup update nightly
@@ -33,8 +23,6 @@ swanky_bin_path="/opt/swanky/bin/swanky"
 if [ ! -L "$link_path" ]; then
   sudo ln -s "$swanky_bin_path" "$link_path"
 fi
-
-sudo chown vscode /workspace
 
 if ! npm list -g | grep -q "serve"; then
   echo "serve is not installed globally, installing..."
