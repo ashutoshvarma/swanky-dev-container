@@ -15,7 +15,7 @@
   },
 
   // Use 'postCreateCommand' to run commands after the container is created.
-  "postCreateCommand": "bash /tmp/swanky-setup.sh",
+  "postCreateCommand": "bash .devcontainer/scripts/swanky-setup.sh",
   // "overrideCommand": true,
   // Configure tool-specific properties.
   "customizations": {
